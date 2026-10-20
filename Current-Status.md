@@ -1,22 +1,24 @@
 # Current Status
 
-Date: 2026-10-19
+Date: 2026-10-20
 
 ## Repository purpose
 
-This repository is a minimal exploratory simulator for an AI-funded dividend concept. The core idea is that if AI-generated surplus is built on public data, public infrastructure, and public labor, some share of that surplus should flow back to people as a universal dividend.
+This repository is a public-interest research project for understanding and modeling a public claim on AI-generated surplus.
 
-The essential formula in the project is:
+The core idea is not simply to compute a dividend. It is to model a broader claim: that a significant portion of AI-generated value is socially produced, built on human contribution, public infrastructure, and collective data and labor, and therefore should not be treated as purely private rent.
+
+The project begins with a minimal formula:
 
 D = (τ × R) / N
 
 Where:
-- D = dividend per person
-- τ = public share of AI-generated rents
+- D = dividend or per-person public payout
+- τ = share of AI-generated returns allocated to a public claim
 - R = total AI-generated returns
-- N = eligible population
+- N = eligible population or claimant base
 
-The project is intentionally opinionated and conceptual rather than a production economic system. It aims to make the policy logic legible, testable, and discussable.
+This formula is the first implementation layer. It is the minimum viable expression of a broader idea: public claims on AI surplus, informed by human contribution, social legitimacy, and governance design.
 
 ## Current implementation status
 
@@ -25,146 +27,111 @@ The project is intentionally opinionated and conceptual rather than a production
 The repo currently contains:
 - a small Python economic core in `simulator/core.py`
 - a simple static web UI in `frontend/index.html` and `frontend/app.js`
-- a set of conceptual docs under `docs/`
+- conceptual docs under `docs/`
 - a license and a basic README
 
-The Python engine currently models:
-- AI revenue streams as `AIRevenueStreams`
-- a dividend scenario as `DividendScenario`
-- annual and monthly dividends per person
+The current implementation is best understood as:
+- a working prototype for dividend calculation
+- a conceptual engine for exploring AI surplus claims
+- a foundation for future policy and civic modeling
 
-The frontend allows users to enter:
-- AI profit
-- compute surplus
-- data licensing revenue
-- population
-- public share τ
+### What is planned next
 
-...and then shows annual and monthly dividend figures.
+The project is intentionally staged and should continue to grow in layers:
+- simulator core refinement
+- richer scenario and policy modeling
+- CLI/API/frontend integration
+- public-facing documentation and policy framing
+- broader civic and personal-agent layers
 
-### What does not exist yet
+### What does not yet exist
 
-The repo is still early-stage and has several gaps:
-- no Python package metadata (`pyproject.toml`, `requirements.txt`, etc.)
+The repo is still early-stage and does not yet fully embody the broader vision. Important gaps include:
+- no fully structured Python package layout
 - no tests
-- no CLI wrapper or scenario runner beyond the simple script in `simulator/core.py`
-- no API server under `/api`
-- no scenario module (`scenarios.py`)
-- no `models.py` or other detailed economic components described in docs
-- no `/docs/manifesto.md` even though the docs and README reference it
+- no robust CLI or scenario runner
+- no production API server
+- no complete scenario library
+- no full policy-governance implementation
+- no complete civic platform layer
 
-## Architecture reality vs. documented plan
+## Architecture reality
 
-The current repository is a proof-of-concept, but some documentation still reads like a planned future architecture rather than the repo's actual state.
+This repository is intentionally a single-project home for multiple layers of work:
 
-Examples of mismatch:
-- `docs/architecture.md` describes modules such as `models.py`, `ai_rent.py`, `compute_rent.py`, `data_dividend.py`, and `scenarios.py`, but these files do not currently exist.
-- `README.md` describes a planned directory structure including `api/`, `manifesto`, and additional simulator modules that are not yet implemented.
-- `frontend/index.html` references `styles.css`, while the actual file is named `style.css`.
+1. The simulator layer
+   - the working formula and basic input/output model
+2. The policy layer
+   - the claim that AI surplus is socially produced and therefore subject to public governance
+3. The interface layer
+   - frontend and API for usability and integration
+4. The civic/advocacy layer
+   - narratives, communication, and institutional framing
 
-This is not a failure; it is a normal early-stage state. But it does mean the architecture should be cleaned up so the docs match the actual project reality.
+That structure is deliberate. The repo should not pretend to be a full public policy platform before it has built the underlying simulator and policy logic.
 
 ## Current project posture
 
 At present, this project is best understood as:
-- a conceptual prototype,
-- a thought experiment with a working calculation,
-- a small, modular base for future scenario modeling,
-- and a communication artifact for policy and product discussions.
+- a conceptual prototype
+- a public-claims model in early development
+- a small but meaningful foundation for a larger civic and policy project
+- a tool for exploring what a legitimate public claim on AI surplus might look like
 
-It is not yet a full economic engine or a polished product. That is fine, but it should be made explicit in the docs so expectations are aligned.
+It is not yet a final economic engine or a complete NGO platform. That is fine. The repo should remain explicit about this boundary.
 
 ## Where we should go next
 
-### Priority 1: clarify the architecture
+### Priority 1: clarify the public-claims model
 
-Create a single source of truth for the architecture that reflects what exists now and what is intentionally planned next.
+The project should keep making the core claim explicit:
+- AI-generated surplus is not purely private
+- it is built on social and economic inputs beyond capital alone
+- a public share may be justified on grounds of contribution, infrastructure, and collective legitimacy
 
-Recommended approach:
-- keep a minimal core engine in `simulator/`
-- clearly distinguish between:
-  - implemented now,
-  - planned next,
-  - aspirational later
-- remove references to nonexistent files unless we are actually building them
+### Priority 2: strengthen the simulator core
 
-### Priority 2: build the real core model
-
-The next meaningful step is to expand the simulator from a simple formula to a more structured model. Proposed additions:
-- explicit `Scenario` definitions
-- revenue stream breakdowns with better naming and semantics
-- optional adjustments for inequality and displacement
+The next meaningful step is to expand the simulator from a simple formula into a structured model with:
+- explicit scenario definitions
+- revenue stream breakdowns
+- inequality and displacement adjustments
 - multi-year projections
-- per-country or per-region variants
+- region- or claimant-base variants
 
-### Priority 3: add a proper Python project structure
+### Priority 3: build the product layer
 
-This will make the project easier to run and maintain.
+The next implementation steps should include:
+- CLI or runner
+- more usable frontend
+- structured API
+- scenario comparison tools
+- clearer user-facing explanations
 
-Suggested shape:
-- `simulator/core.py` for core logic
-- `simulator/scenarios.py` for scenario definitions
-- `simulator/models.py` for data structures
-- optional `simulator/cli.py` for command-line usage
-- `tests/` for validation
-- `pyproject.toml` or `requirements.txt` for reproducibility
+### Priority 4: connect policy to implementation
 
-### Priority 4: connect the frontend to the actual model
+The docs and code should remain closely aligned so that the economic model and policy argument reinforce one another.
 
-The static HTML/JS frontend should either:
-- call a Python backend,
-- or use a structured JS model that mirrors the Python logic,
-- or be clearly marked as a demo UI, not a final product
+### Priority 5: keep documentation honest
 
-Right now the frontend is a good demo, but it is not yet tied to a broader system architecture.
+Documentation should clearly differentiate between:
+- implemented now
+- planned next
+- aspirational future
 
-### Priority 5: sharpen the documentation
-
-The repository needs more explicit documentation around:
-- what is implemented vs. planned
-- the economic assumptions behind the formula
-- known limits of the model
-- how future modules fit together
-- what success looks like for the project at each phase
-
-## Recommended next documentation updates
-
-These should be treated as part of regular project hygiene:
-1. Keep this `Current-Status.md` file updated after any major change.
-2. Make `README.md` match the actual repo structure.
-3. Update `docs/architecture.md` to reflect reality.
-4. Add a short `docs/assumptions.md` or equivalent if the economic model becomes more complex.
-5. Add a `docs/roadmap.md` phase status section for completed vs. pending work.
-
-## Working principle for this repo
-
-This repo should remain intentionally minimal but honest.
-
-That means:
-- small wins are valuable,
-- architecture should remain readable,
-- and documentation should be updated when the model changes.
-
-The goal is not to build a giant system immediately. The goal is to create a clear foundation for serious thinking and future expansion.
-
-## Summary
-
-Current state: promising concept, minimal working simulator, clear theoretical framing, but still early and somewhat aspirational in its documentation.
-
-Likely next move: convert the repo from a conceptual prototype into a better-defined, well-documented model with explicit phases, clearer architecture, and stronger maintainability practices.
-
-This file should be reviewed and updated after major changes so the project status stays accurate over time.
-
-## Update practice
+## Recommended update practice
 
 After any major change, update this file with:
 - what changed,
 - what remains incomplete,
-- what architecture assumptions were affected,
-- and what next milestone is being targeted.
+- what assumptions were affected,
+- and which milestone is next.
 
-This should be a lightweight but regular habit in the repository.
+This should remain a lightweight but regular habit in the repo.
 
----
+## Summary
 
-Status file created for repo maintenance and future planning.
+The repo’s purpose is broader than a generic dividend calculator. It is the foundation for exploring a public claim on AI-generated surplus rooted in human contribution, social data, public infrastructure, and collective labor.
+
+The dividend model is how we start. The larger project is to understand and make operational the political, economic, and civic logic behind that claim.
+
+This file should be treated as a working reference for the project’s actual current posture and future direction.
